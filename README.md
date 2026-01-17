@@ -15,7 +15,7 @@ pip install flask_cors
 
 Как пользоваться Git:
 Команды для загрузки проекта в репозиторий:
-1. git config user.name "Имя пользователя"
+1. git config user.name "Имя пользователя" (делается 1 раз)
 2. git status
 3. git add -A
 4. git commit -m "Краткое описание"
