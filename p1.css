@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f2f4f8;
+}
+header {
+    background: #1976d2;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+header button {
+    margin-right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.screen {
+    display: none;
+    padding: 20px;
+}
+.screen.active {
+    display: block;
+}
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 450px;
+    margin: auto;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+}
+.error {
+    color: red;
+}
+.success {
+    color: green;
+}
+ul {
+    padding-left: 18px;
+}
+.row {
+    display: flex;
+    gap: 10px;
+}
+.row select {
+    width: 50%;
+}

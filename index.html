@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<meta charset="UTF-8">
+<title>Школьная столовая — Портал</title>
+
+<script src="page1reg.js"></script>
+<link rel="stylesheet" href="p1.css" t>
+
+
+
+<head></head>
+
+<body>
+
+<header>
+    <button onclick="goBack()">⬅</button>
+    <h2>Школьная столовая</h2>
+</header>
+
+
+<div class="screen active" id="start">
+    <div class="card">
+        <h3>Войти как</h3>
+        <button onclick="openLogin('student')">Ученик</button>
+        <button onclick="openLogin('cook')">Повар</button>
+        <button onclick="openLogin('admin')">Администратор</button>
+        <hr>
+        <button onclick="show('registerRole')">Зарегистрироваться</button>
+    </div>
+</div>
+
+<!--  ВХОД  -->
+
+<div class="screen" id="login">
+    <div class="card">
+        <h3 id="loginTitle"></h3>
+        <input id="loginEmail" placeholder="Почта">
+        <input id="loginPassword" type="password" placeholder="Пароль">
+        <button onclick="login()">Войти</button>
+        <div class="error" id="loginError"></div>
+    </div>
+</div>
+
+<!--  ВЫБОР РОЛИ ПРИ РЕГИСТРАЦИИ  -->
+
+<div class="screen" id="registerRole">
+    <div class="card">
+        <h3>Зарегистрироваться как</h3>
+        <button onclick="chooseRole('student')">Ученик</button>
+        <button onclick="chooseRole('cook')">Повар</button>
+        <button onclick="chooseRole('admin')">Администратор</button>
+    </div>
+</div>
+
+<!--  РЕГИСТРАЦИЯ  -->
+
+<div class="screen" id="register">
+    <div class="card">
+        <h3 id="registerTitle"></h3>
+
+        <input id="regEmail" placeholder="Почта">
+        <input id="regPass1" type="password" placeholder="Пароль">
+        <input id="regPass2" type="password" placeholder="Повторите пароль">
+
+        <input id="surname" placeholder="Фамилия">
+        <input id="name" placeholder="Имя">
+        <input id="patronymic" placeholder="Отчество">
+        <input id="birthdate" type="date">
+
+        <div class="row" id="classRow">
+            <select id="classNumber"></select>
+            <select id="classLetter"></select>
+        </div>
+
+        <button onclick="registerUser()">Зарегистрироваться</button>
+        <div class="error" id="registerError"></div>
+        <div class="success" id="registerSuccess"></div>
+    </div>
+</div>
+
+<!--  КАБИНЕТ УЧЕНИКА  -->
+
+<div class="screen" id="student">
+    <div class="card">
+        <h3>Кабинет ученика</h3>
+        <button onclick="showMenu()">Просмотр меню</button>
+        <button onclick="openFood()">Оплата питания</button>
+        <button onclick="alert('Функция в разработке')">Заметки</button>
+    </div>
+</div>
+
+<!--  МЕНЮ ПО ДНЯМ  -->
+
+<div class="screen" id="menuScreen">
+    <div class="card">
+        <h3>Меню по дням</h3>
+        <select id="daySelect" onchange="loadDayMenu()">
+            <option disabled selected>Выберите день</option>
+            <option>Понедельник</option>
+            <option>Вторник</option>
+            <option>Среда</option>
+            <option>Четверг</option>
+            <option>Пятница</option>
+        </select>
+        <div id="menuContent"></div>
+    </div>
+</div>
+
+<!--  ОПЛАТА ПИТАНИЯ  -->
+
+<div class="screen" id="foodType">
+    <div class="card">
+        <h3>Выберите тип питания</h3>
+        <button onclick="chooseMeal('breakfast')">Завтрак</button>
+        <button onclick="chooseMeal('lunch')">Обед</button>
+    </div>
+</div>
+
+<div class="screen" id="foodChoose">
+    <div class="card">
+        <h3 id="mealTitle"></h3>
+        <div id="dishList"></div>
+    </div>
+</div>
+
+<div class="screen" id="foodPay">
+    <div class="card">
+        <h3>Оплатить?</h3>
+        <button onclick="confirmPay()">Оплатить</button>
+    </div>
+</div>
+
+<div class="screen" id="foodReceive">
+    <div class="card">
+        <h3>Получили блюдо?</h3>
+        <button onclick="finishReceive()">Подтвердить получение</button>
+    </div>
+</div>
+
+<div class="screen" id="foodReview">
+    <div class="card">
+        <h3>Оставьте отзыв</h3>
+        <textarea id="reviewText" placeholder="Ваш отзыв..."></textarea>
+        <button onclick="sendReview()">Отправить</button>
+        <button onclick="skipReview()">Пропустить</button>
+    </div>
+</div>
+
+<!--  КАБИНЕТ ПОВАРА  -->
+
+<div class="screen" id="cook">
+    <div class="card">
+        <h3>Кабинет повара</h3>
+        <button onclick="openCookMenu()">Меню</button>
+        <button onclick="openCookOrders()">Заказы на сегодня</button>
+        <button onclick="openCookReviews()">Отзывы</button>
+    </div>
+</div>
+
+<div class="screen" id="cookMenu">
+    <div class="card">
+        <h3>Редактирование меню</h3>
+
+        <select id="cookDay" onchange="loadCookMenu()">
+            <option disabled selected>Выберите день</option>
+            <option>Понедельник</option>
+            <option>Вторник</option>
+            <option>Среда</option>
+            <option>Четверг</option>
+            <option>Пятница</option>
+        </select>
+
+        <h4>Завтрак</h4>
+        <div id="cookBreakfast"></div>
+
+        <h4>Обед</h4>
+        <div id="cookLunch"></div>
+
+        <h3>Добавить блюдо</h3>
+        <input id="addDish" placeholder="Название">
+        <select id="addType">
+            <option value="breakfast">Завтрак</option>
+            <option value="lunch">Обед</option>
+        </select>
+        <button onclick="addCookDish()">Добавить</button>
+
+        <h3>Удалить блюдо</h3>
+        <input id="removeDish" placeholder="Название">
+        <select id="removeType">
+            <option value="breakfast">Завтрак</option>
+            <option value="lunch">Обед</option>
+        </select>
+        <button onclick="removeCookDish()">Удалить</button>
+    </div>
+</div>
+
+<div class="screen" id="cookOrders">
+    <div class="card">
+        <h3>Заказы на сегодня</h3>
+        <div id="ordersList"></div>
+    </div>
+</div>
+
+<div class="screen" id="cookReviewsList">
+    <div class="card">
+        <h3>Отзывы</h3>
+        <ul id="reviewsOutput"></ul>
+    </div>
+</div>
+
+<!--  КАБИНЕТ АДМИНИСТРАТОРА  -->
+
+<div class="screen" id="admin">
+    <div class="card">
+        <h3>Кабинет администратора</h3>
+        <button onclick="openAdminUsers()">Пользователи</button>
+        <button onclick="openAdminMenu()">Меню столовой</button>
+        <button onclick="openAdminOrders()">Заказы</button>
+        <button onclick="openAdminReviews()">Отзывы</button>
+        <button onclick="openAdminSystem()">Системные функции</button>
+    </div>
+</div>
+
+<div class="screen" id="adminUsers">
+    <div class="card">
+        <h3>Пользователи</h3>
+        <input id="userSearch" placeholder="Поиск по фамилии" oninput="filterUsers()">
+        <div id="usersList"></div>
+    </div>
+</div>
+
+<div class="screen" id="adminMenu">
+    <div class="card">
+        <h3>Меню столовой</h3>
+        <button onclick="show('cookMenu')">Редактировать меню</button>
+    </div>
+</div>
+
+<div class="screen" id="adminOrders">
+    <div class="card">
+        <h3>Заказы</h3>
+        <button onclick="loadAdminOrders()">Обновить</button>
+        <div id="adminOrdersList"></div>
+    </div>
+</div>
+
+<div class="screen" id="adminReviews">
+    <div class="card">
+        <h3>Отзывы</h3>
+        <div id="adminReviewsList"></div>
+    </div>
+</div>
+
+<div class="screen" id="adminSystem">
+    <div class="card">
+        <h3>Системные функции</h3>
+        <button onclick="clearStats()">Очистить статистику</button>
+        <button onclick="alert('Функция в разработке')">Сброс меню</button>
+        <button onclick="alert('Функция в разработке')">Логи системы</button>
+    </div>
+</div>
+
+
+</body>
+</html>
