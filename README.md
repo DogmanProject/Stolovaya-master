@@ -15,7 +15,7 @@ pip install flask_cors
 
 Как пользоваться Git:
 Команды для загрузки проекта в репозиторий:
-1. git remote add origin https://github.com/
+1. git remote add origin https://github.com/DogmanProject/Stolovaya-master
 2. git config user.name "Имя" (делается 1 раз)
 3. git config user.email "почта" (делается 1 раз)
 4. git status
